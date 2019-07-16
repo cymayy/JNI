@@ -10,17 +10,17 @@ cmake_minimum_required(VERSION 3.4.1)
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 
-add_library( # Sets the name of the library.
-      # 设置so文件名称.
-       NameProvider
+add_library( # Specifies the name of the library.
+             native-lib
 
-       # Sets the library as a shared library.
-       SHARED
-       # 设置这个so文件为共享.
+             # Sets the library as a shared library.
+             SHARED
 
-       # Provides a relative path to your source file(s).
-       # 设置这个so文件为共享.
-       src/main/jni/getName.cpp)
+             # Provides a relative path to your source file(s).
+             src/main/jni/Hello.c )
+
+# Specifies a path to native header files.
+include_directories(src/main/jni/include/)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -28,21 +28,17 @@ add_library( # Sets the name of the library.
 # you want to add. CMake verifies that the library exists before
 # completing its build.
 
-find_library( # Sets the name of the path variable.
-       log-lib
+find_library( # Defines the name of the path variable that stores the
+              # location of the NDK library.
+              log-lib
 
-       # Specifies the name of the NDK library that
-       # you want CMake to locate.
-       log )
+              # Specifies the name of the NDK library that
+              # CMake needs to locate.
+              log )
 
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
-
+# Links your native library against one or more other native libraries.
 target_link_libraries( # Specifies the target library.
-            # 制定目标库.
-            NameProvider
+                       native-lib
 
-            # Links the target library to the log library
-            # included in the NDK.
-            ${log-lib} )
+                       # Links the log library to the target library.
+                       ${log-lib} )

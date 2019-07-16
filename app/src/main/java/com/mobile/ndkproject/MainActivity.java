@@ -9,5 +9,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        JNI jni = new JNI();
+        String result = jni.sayHello();
+        System.out.println("result==="+result);
     }
 }
