@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void checkPwd(View view){
-
+        int result = jni.checkPwd("123456");
+        Log.e(MainActivity.class.getSimpleName(),"result========="+result);
     }
 }
