@@ -14,6 +14,7 @@ public class JNI {
     public native void callbackPrintString();
     public native void callbackSayHello();
 
+
     public int add(int x,int y){
         Log.e("TAG","add() x=" + x + " y=" + y);
         return x+y;
